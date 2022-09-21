@@ -13,8 +13,8 @@ dash.register_page(__name__)
 
 def get_province_data() -> pd.DataFrame:
     """
-
-    :return:
+    Creat thailand map dataframe (name and geometry of province) from file
+    :return: Thailand map dataframe
     """
     thai_map_df = gpd.read_file("data/THA_MAP.shp")
     province_name = pd.read_csv("data/Province_NAME.csv", index_col=None)
@@ -30,10 +30,10 @@ def get_province_data() -> pd.DataFrame:
 
 def preprocess_data(thai_map_df: pd.DataFrame, df: pd.DataFrame) -> pd.DataFrame:
     """
-
-    :param thai_map_df:
-    :param df:
-    :return:
+    Clean weather data and map merge thailand map dataframe on province
+    :param thai_map_df: Thailand map dataframe
+    :param df: Weather dataframe from scrape.py
+    :return: Combined dataframe merged on on province
     """
     df['จังหวัด'] = df['จังหวัด'].replace(
         ['ชัยนาท สกษ.', 'สมุทรปราการ สกษ.', 'อุบลราชธานี (ศูนย์ฯ)', 'พิจิตร สกษ.', 'ปทุมธานี สกษ.', 'พัทลุง สกษ.', 'ยะลา สกษ.'],
@@ -49,9 +49,9 @@ def preprocess_data(thai_map_df: pd.DataFrame, df: pd.DataFrame) -> pd.DataFrame
 
 def find_average_value(df: pd.DataFrame) -> pd.DataFrame:
     """
-
-    :param df:
-    :return:
+    Find average value of weather group by province
+    :param df: Combined dataframe or filter dataframe
+    :return: Aggregate dataframe
     """
     df_summary = df.groupby(['จังหวัด', 'Province'])\
         .agg(avg_temp_high=('temp_high', 'mean'),
@@ -65,14 +65,24 @@ thai_map = get_province_data()
 df = preprocess_data(thai_map, df)
 th_json = "https://raw.githubusercontent.com/apisit/thailand.json/master/thailand.json"
 
-def plot_line_graph_temp(filtered_province_df):
-
+def plot_line_graph_temp(filtered_province_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Plot line graph for temperature feature
+    :param filtered_province_df: Weather that filter by province
+    :return: Line plot
+    """
     fig_line = px.line(filtered_province_df, x='date', y='temp_high',
                        labels={'temp_high': 'high temperature', 'temp_low': 'low temperature'})
     fig_line.add_scatter(x=filtered_province_df['date'], y=filtered_province_df['temp_low'], mode='lines')
     return fig_line
 
-def plot_line_graph(filtered_province_df, selected_data):
+def plot_line_graph(filtered_province_df: pd.DataFrame, selected_data:str):
+    """
+    Plot line graph for feature that selected
+    :param filtered_province_df: Weather that filter by province
+    :param selected_data: Feature that selected
+    :return: Line plot
+    """
     fig_line = px.line(filtered_province_df, x='date', y=selected_data)
     return fig_line
 
