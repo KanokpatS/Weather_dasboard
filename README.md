@@ -22,6 +22,7 @@
       `pip install -r requirement.txt`
       
    3. Install chrome driver from https://chromedriver.chromium.org/downloads
-   4. Run file scrape.py
+   4. Edit month and day in main function 
+   6. Run file scrape.py
   
    `python3 scrape.py` 
