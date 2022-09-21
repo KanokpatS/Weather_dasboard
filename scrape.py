@@ -6,10 +6,10 @@ from bs4 import BeautifulSoup
 
 def choose_webpage(month: str, day: str):
     """
-
-    :param month:
-    :param day:
-    :return:
+    Choose webpage html from month and date
+    :param month: Month that you want a weather data
+    :param day: Day that you want a weather data
+    :return: HTML of webpage
     """
     driver = webdriver.Chrome(executable_path=r'D:\AltoTech\weather\chromedriver.exe')
     driver.get('https://www.tmd.go.th/climate/climate.php?FileID=1')
@@ -22,11 +22,11 @@ def choose_webpage(month: str, day: str):
 
 def scrape_data(data: str, month: str, day:str) -> dict:
     """
-
-    :param data:
-    :param month:
-    :param day:
-    :return:
+    Scrape webpage and clean data
+    :param data: HTML of webpage
+    :param month: Month that you want a weather data
+    :param day: Day that you want a weather data
+    :return: Dictionary of weather data
     """
     soup = BeautifulSoup(data, "html.parser")
     values = soup.find_all('tr', {"class": ["RDS", "RADS"]})
@@ -48,9 +48,13 @@ def scrape_data(data: str, month: str, day:str) -> dict:
     return weather_dict
 
 def dict_to_df(weather_dict: dict) -> pd.DataFrame:
+    """
+    Transform dictionary to dataframe
+    :param weather_dict: Dictionary of weather data
+    :return: Weather dataframe
+    """
     df = pd.DataFrame.from_dict(weather_dict, orient='index', columns=['date', 'temp_high', 'temp_low', 'wind', 'rain'])
     return df
-
 
 if __name__ == "__main__":
     month = "2022-07"

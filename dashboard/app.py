@@ -6,13 +6,7 @@ import dash_bootstrap_components as dbc
 app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 server = app.server
 
-print('--------------------------------------')
-page_reg = list(dash.page_registry.values())
-for x in page_reg:
-    print(x)
-    print('-------------------------------')
-print('*********************************')
-
+# Create navbar and dropdown for change page
 navbar = dbc.NavbarSimple(
     dbc.DropdownMenu(
         [
