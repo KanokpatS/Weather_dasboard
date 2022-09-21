@@ -11,7 +11,9 @@
   
   3. Run file app.py
   
-   `python3 dashboard/app.py` 
+   `cd dashboard` 
+  
+   `python3 app.py` 
    
    ## How to set up environment and run scraper file
    1. Create virtual environment
