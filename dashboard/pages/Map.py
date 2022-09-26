@@ -16,8 +16,8 @@ def get_province_data() -> pd.DataFrame:
     Creat thailand map dataframe (name and geometry of province) from file
     :return: Thailand map dataframe
     """
-    thai_map_df = gpd.read_file("data/THA_MAP.shp")
-    province_name = pd.read_csv("data/Province_NAME.csv", index_col=None)
+    thai_map_df = gpd.read_file("dashboard/data/THA_MAP.shp")
+    province_name = pd.read_csv("dashboard/data/Province_NAME.csv", index_col=None)
     province_name["NAME"] = province_name["NAME"].apply(lambda x: x.replace("\t", ""))
 
     thai_map_df["จังหวัด"] = province_name["NAME"]
@@ -60,7 +60,7 @@ def find_average_value(df: pd.DataFrame) -> pd.DataFrame:
     return df_summary
 
 # Prepare data for dashboard
-df = pd.read_excel('data/weather_data.xlsx')
+df = pd.read_excel('dashboard/data/weather_data.xlsx')
 thai_map = get_province_data()
 df = preprocess_data(thai_map, df)
 th_json = "https://raw.githubusercontent.com/apisit/thailand.json/master/thailand.json"
