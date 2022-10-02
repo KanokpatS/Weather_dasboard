@@ -21,7 +21,7 @@
   
 4. Build docker container
 
-   `docker run -it --name weather_dashboard -v $PWD\:/app -p 8050:8050 weather_dashboard`
+   `docker run -it --name weather_dashboard -v $PWD\:/app -p 8080:8080 weather_dashboard`
   
 5. Run file app.py
   
@@ -30,14 +30,14 @@
     `python3 app.py`
    
 ## How to deploy dashboard
-1. Use docerfile in branch eploymnt
+1. Use docerfile in branch deployment
 2. Build docker image
 
   `docker build -t weather_dashboard .`
   
 3. Test docker container
 
-  `docker run -it --name weather_dashboard -p 8050:8050 weather_dashboard`
+  `docker run -it --name weather_dashboard -p 8080:8080 weather_dashboard`
   
 4. Login dokerhub
   `docker login`
