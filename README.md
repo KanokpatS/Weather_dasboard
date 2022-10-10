@@ -25,9 +25,7 @@
   
 5. Run file app.py
   
-    `cd dashboard` 
-  
-    `python3 app.py`
+    `python3 dashboard/app.py`
    
 ## How to deploy dashboard
 1. Use docerfile in branch deployment
