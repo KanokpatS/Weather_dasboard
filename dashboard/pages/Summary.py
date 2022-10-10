@@ -9,7 +9,7 @@ from dash import Dash, dcc, html, Input, Output, callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
 
-dash.register_page(__name__)
+# dash.register_page(__name__)
 
 def get_province_data() -> pd.DataFrame:
     """
@@ -94,11 +94,6 @@ layout = html.Div([
             dbc.Row([
 
                 dbc.Col(html.Div([
-                    # html.P(
-                    #     f"This is the disk usage on \
-                    #          per user, \
-                    #         as of ."
-                    # ),
                     html.Label("Temperature", style={'color': 'black', 'fontSize': 18, 'font-weight': 'bold'},
                                className='other-labels'),
                     dcc.Graph(id='temp')
