@@ -9,8 +9,6 @@ from dash import Dash, dcc, html, Input, Output, callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
 
-# dash.register_page(__name__)
-
 def get_province_data() -> pd.DataFrame:
     """
     Creat thailand map dataframe (name and geometry of province) from file
