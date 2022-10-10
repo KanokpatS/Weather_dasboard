@@ -33,19 +33,21 @@
 1. Use docerfile in branch deployment
 2. Build docker image
 
-  `docker build -t weather_dashboard .`
+   `docker build -t weather_dashboard .`
   
 3. Test docker container
 
-  `docker run -it --name weather_dashboard -p 8080:8080 weather_dashboard`
+   `docker run -it --name weather_dashboard -p 8080:8080 weather_dashboard`
   
 4. Login dokerhub
-  `docker login`
+
+   `docker login`
 
 5. Tag and push docker image into dokcerhub
-  `docker tag weather_dashboard {docker username}/weather_dashboard:{version}`
 
-  `docker push {docker username}/weather_dashboard:{version}`
+   `docker tag weather_dashboard {docker username}/weather_dashboard:{version}`
+
+   `docker push {docker username}/weather_dashboard:{version}`
   
 6. Open Azure portal
 7. Open Azure webapp
